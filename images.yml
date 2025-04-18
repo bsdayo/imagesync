@@ -1,0 +1,2 @@
+# Sync to Aliyun Container Registry
+docker.io/library/alpine: registry.cn-shenzhen.aliyuncs.com/bsdayo/alpine

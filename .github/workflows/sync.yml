@@ -1,0 +1,19 @@
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '20 4 * * *'
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: hhyasdf/image-sync-action@v1.1
+        with:
+          auth_file: ./auth.yml
+          images_file: ./images.yml
+          version: latest
+        env:
+          ALIYUN_REGISTRY_USERNAME: ${{ secrets.ALIYUN_REGISTRY_USERNAME }}
+          ALIYUN_REGISTRY_PASSWORD: ${{ secrets.ALIYUN_REGISTRY_PASSWORD }}
