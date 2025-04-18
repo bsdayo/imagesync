@@ -1,3 +1,5 @@
+name: Sync Docker Images
+
 on:
   workflow_dispatch:
   schedule:
