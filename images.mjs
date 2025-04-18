@@ -11,7 +11,7 @@ const IMAGES = {
     'snowdreamtech/frpc:latest',
     'snowdreamtech/frps:latest',
     'diygod/rsshub:latest,chromium-bundled',
-    'vaultwarden/server:latest',
+    ['vaultwarden/server:latest', 'vaultwarden'],
     'jellyfin/jellyfin:latest',
   ],
   'ghcr.io': ['home-assistant/home-assistant:stable'],
@@ -19,12 +19,20 @@ const IMAGES = {
 
 // Generate JSON
 const generated = {}
-for (const [registry, names] of Object.entries(IMAGES)) {
-  for (const name of names) {
-    const repo = /(?<=\/).+(?=:)/.exec(name)[0]
-    const source = `${registry}/${name}`
-    const dest = `registry.cn-shenzhen.aliyuncs.com/bsdayo/${repo}`
-    generated[source] = dest
+for (const [registry, list] of Object.entries(IMAGES)) {
+  for (const item of list) {
+    let srcImage = ''
+    let dstRepo = ''
+    if (typeof item === 'object') {
+      srcImage = item[0]
+      dstRepo = item[1]
+    } else {
+      srcImage = item
+      dstRepo = /(?<=\/).+(?=:)/.exec(item)[0]
+    }
+    const srcFull = `${registry}/${srcImage}`
+    const dstFull = `registry.cn-shenzhen.aliyuncs.com/bsdayo/${dstRepo}`
+    generated[srcFull] = dstFull
   }
 }
 fs.writeFileSync('images.json', JSON.stringify(generated, null, 2))
