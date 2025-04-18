@@ -11,10 +11,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+        
+      - run: node images.mjs
+
       - uses: hhyasdf/image-sync-action@v1.1
         with:
           auth_file: ./auth.yml
-          images_file: ./images.yml
+          images_file: ./images.json
           version: latest
         env:
           ALIYUN_REGISTRY_USERNAME: ${{ secrets.ALIYUN_REGISTRY_USERNAME }}
