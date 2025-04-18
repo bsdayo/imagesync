@@ -13,6 +13,7 @@ const IMAGES = {
     'diygod/rsshub:latest,chromium-bundled',
     ['vaultwarden/server:latest', 'vaultwarden'],
     'jellyfin/jellyfin:latest',
+    'itzg/minecraft-server:latest'
   ],
   'ghcr.io': ['home-assistant/home-assistant:stable'],
 }
