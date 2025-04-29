@@ -13,7 +13,8 @@ const IMAGES = {
     'diygod/rsshub:latest,chromium-bundled',
     ['vaultwarden/server:latest', 'vaultwarden'],
     'jellyfin/jellyfin:latest',
-    'itzg/minecraft-server:latest'
+    'itzg/minecraft-server:latest',
+    ['hagb/docker-easyconnect:7.6.7', 'easyconnect'],
   ],
   'ghcr.io': ['home-assistant/home-assistant:stable'],
 }
